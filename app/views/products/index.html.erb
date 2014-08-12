@@ -11,8 +11,8 @@
   </thead>
 
   <tbody>
-    <% @products.each do |product| %>
-      <% cache(product) do %>
+    <% cache(all_products_cache_key) do %>
+      <% @products.each do |product| %>
         <tr>
           <% sleep 0.2 # Make this loop artificially slow %>
           <td><%= link_to product.name, product %></td>
