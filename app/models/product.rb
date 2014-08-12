@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   validates :price, numericality: { greater_than: 0 }
 
   def tweets
-    Rails.cache.fetch('tweets') do # key is string 'tweets'
+    Rails.cache.fetch([self,'tweets']) do
       twitter.search("#{name} -rt", result_type: 'recent', lang: 'en').take(5)
     end
   end
